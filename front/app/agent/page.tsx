@@ -13,7 +13,6 @@ export default function AgentDashboard() {
         {/* Top Row - Profile, Events, Tasks */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <AgentProfile />
-
           <EventsCard />
           <TasksCard />
           <EventPumpsCard />
