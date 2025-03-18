@@ -88,30 +88,61 @@ export function TGTasksCard() {
   const getStatusBadge = (status: string) => {
     switch (status) {
       case 'completed':
-        return <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200">Completed</Badge>;
+        return (
+          <Badge variant="outline" 
+            className="bg-green-50 text-green-700 border-green-200
+                     dark:bg-green-900/30 dark:text-green-200 dark:border-green-700">
+            Completed
+          </Badge>
+        );
       case 'failed':
-        return <Badge variant="outline" className="bg-red-50 text-red-700 border-red-200">Failed</Badge>;
+        return (
+          <Badge variant="outline"
+            className="bg-red-50 text-red-700 border-red-200
+                     dark:bg-red-900/30 dark:text-red-200 dark:border-red-700">
+            Failed
+          </Badge>
+        );
       case 'running':
-        return <Badge variant="outline" className="bg-blue-50 text-blue-700 border-blue-200">Running</Badge>;
+        return (
+          <Badge variant="outline"
+            className="bg-blue-50 text-blue-700 border-blue-200
+                     dark:bg-blue-900/30 dark:text-blue-200 dark:border-blue-700">
+            Running
+          </Badge>
+        );
       case 'pending':
-        return <Badge variant="outline" className="bg-amber-50 text-amber-700 border-amber-200">Pending</Badge>;
+        return (
+          <Badge variant="outline"
+            className="bg-amber-50 text-amber-700 border-amber-200
+                     dark:bg-amber-900/30 dark:text-amber-200 dark:border-amber-700">
+            Pending
+          </Badge>
+        );
       default:
-        return <Badge variant="outline" className="bg-gray-50 text-gray-700 border-gray-200">Unknown</Badge>;
+        return (
+          <Badge variant="outline"
+            className="bg-gray-50 text-gray-700 border-gray-200
+                     dark:bg-gray-800 dark:text-gray-300 dark:border-gray-700">
+            Unknown
+          </Badge>
+        );
     }
   };
+  
 
   return (
     <Card className="w-full shadow-sm">
-      <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2 border-b">
-        <CardTitle className="text-lg font-medium text-gray-800">
+      <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2 ">
+        <CardTitle className="text-lg font-medium text-primary">
           <div className="flex items-center gap-2">
-            <ListTodo className="h-5 w-5 text-purple-600" />
+            {/* <ListTodo className="h-5 w-5 text-purple-600" /> */}
             Active Tasks by SekaiOS
           </div>
         </CardTitle>
         <button 
           onClick={refresh}
-          className="text-gray-500 hover:text-purple-600 transition-colors p-1 rounded-full hover:bg-purple-50"
+          className="text-gray-500 hover:text-indigo-600 transition-colors p-1 rounded-full hover:bg-indigo-50 dark:hover:bg-indigo-800/30"
           disabled={refreshing}
         >
           <RefreshCw className={`h-4 w-4 ${refreshing ? 'animate-spin' : ''}`} />
@@ -148,12 +179,12 @@ export function TGTasksCard() {
             {tasks.map((task) => (
               <div
                 key={task.id}
-                className="rounded-lg border border-gray-100 bg-white p-3 hover:bg-gray-50 transition-colors shadow-sm"
+                className="rounded-lg border border-muted bg-background p-3 hover:bg-muted transition-colors shadow-sm"
               >
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     {getStatusIcon(task.status)}
-                    <h3 className="font-medium text-gray-800">{task.name}</h3>
+                    <h3 className="font-medium text-primary">{task.name}</h3>
                   </div>
                   <div className="flex items-center gap-2">
                     {getStatusBadge(task.status)}

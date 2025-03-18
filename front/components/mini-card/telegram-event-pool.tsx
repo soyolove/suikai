@@ -63,32 +63,73 @@ export function TGEventsCard() {
   // Get event type badge color based on event name
   const getEventBadge = (name: string) => {
     const lowerName = name.toLowerCase();
-    
+  
+    // 颜色方案设计原则：
+    // 1. 暗色背景使用深色调（900系列）保持对比度
+    // 2. 文字使用200-300系列保证可读性
+    // 3. 边框使用700系列保持可见性
+    // 4. 保持与亮色模式相同的语义颜色
+  
     if (lowerName.includes('error') || lowerName.includes('fail')) {
-      return <Badge variant="outline" className="bg-red-50 text-red-700 border-red-200">{name}</Badge>;
-    } else if (lowerName.includes('warn')) {
-      return <Badge variant="outline" className="bg-amber-50 text-amber-700 border-amber-200">{name}</Badge>;
-    } else if (lowerName.includes('success') || lowerName.includes('complete')) {
-      return <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200">{name}</Badge>;
-    } else if (lowerName.includes('info') || lowerName.includes('log')) {
-      return <Badge variant="outline" className="bg-blue-50 text-blue-700 border-blue-200">{name}</Badge>;
-    } else {
-      return <Badge variant="outline" className="bg-gray-50 text-gray-700 border-gray-200">{name}</Badge>;
+      return (
+        <Badge variant="outline" 
+          className="bg-red-50 text-red-700 border-red-200
+                   dark:bg-red-900/30 dark:text-red-200 dark:border-red-700">
+          {name}
+        </Badge>
+      );
+    } 
+    else if (lowerName.includes('warn')) {
+      return (
+        <Badge variant="outline"
+          className="bg-amber-50 text-amber-700 border-amber-200
+                   dark:bg-amber-900/30 dark:text-amber-200 dark:border-amber-700">
+          {name}
+        </Badge>
+      );
+    } 
+    else if (lowerName.includes('success') || lowerName.includes('complete')) {
+      return (
+        <Badge variant="outline"
+          className="bg-green-50 text-green-700 border-green-200
+                   dark:bg-green-900/30 dark:text-green-200 dark:border-green-700">
+          {name}
+        </Badge>
+      );
+    } 
+    else if (lowerName.includes('info') || lowerName.includes('log')) {
+      return (
+        <Badge variant="outline"
+          className="bg-blue-50 text-blue-700 border-blue-200
+                   dark:bg-blue-900/30 dark:text-blue-200 dark:border-blue-700">
+          {name}
+        </Badge>
+      );
+    } 
+    else {
+      return (
+        <Badge variant="outline"
+          className="bg-gray-50 text-gray-700 border-gray-200
+                   dark:bg-gray-800 dark:text-gray-300 dark:border-gray-700">
+          {name}
+        </Badge>
+      );
     }
   };
+  
 
   return (
     <Card className="w-full shadow-sm">
-      <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2 border-b">
-        <CardTitle className="text-lg font-medium text-gray-800">
+      <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+        <CardTitle className="text-lg font-medium text-primary">
           <div className="flex items-center gap-2">
-            <Activity className="h-5 w-5 text-indigo-600" />
+            {/* <Activity className="h-5 w-5 text-indigo-600" /> */}
             Events Pool by SekaiOS
           </div>
         </CardTitle>
         <button 
           onClick={refresh}
-          className="text-gray-500 hover:text-indigo-600 transition-colors p-1 rounded-full hover:bg-indigo-50"
+          className="text-gray-500 hover:text-indigo-600 transition-colors p-1 rounded-full hover:bg-indigo-50 dark:hover:bg-indigo-800/30"
           disabled={refreshing}
         >
           <RefreshCw className={`h-4 w-4 ${refreshing ? 'animate-spin' : ''}`} />
@@ -122,17 +163,17 @@ export function TGEventsCard() {
             {events.map((event) => (
               <div
                 key={event.id}
-                className="rounded-lg border border-gray-100 bg-white p-3 hover:bg-gray-50 transition-colors shadow-sm"
+                className="rounded-lg border border-muted bg-background p-3 hover:bg-gray-50 dark:hover:bg-muted transition-colors shadow-sm"
               >
                 <div className="flex items-center justify-between">
                   <div className="flex items-center">
                     {getEventBadge(event.name)}
                   </div>
-                  <span className="text-xs text-gray-500 whitespace-nowrap font-mono">
+                  <span className="text-xs text-muted-foreground whitespace-nowrap font-mono">
                     {formatTimestamp(event.timestamp)}
                   </span>
                 </div>
-                <p className="mt-2 text-sm text-gray-700 leading-relaxed">{event.description}</p>
+                <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{event.description}</p>
               </div>
             ))}
           </div>
