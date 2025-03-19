@@ -29,7 +29,7 @@ export default function AgentMetrics() {
   }, [])
 
   return (
-    <div className="flex-[2] w-full grid grid-cols-3 gap-4">
+    <div className="flex-[2] w-full grid grid0cols-1 md:grid-cols-3 gap-4">
       {metrics.map((metric) => (
         <MetricCard key={metric.label} {...metric} />
       ))}
@@ -49,7 +49,7 @@ function MetricCard({ label, value, trend }: Metric) {
           trend === 'stable' ? 'bg-yellow-400' : ''
         )} />
       </div>
-      <div className="text-xl font-semibold mt-2">{value}</div>
+      <div className="text-lg md:text-xl font-semibold mt-2">{value}</div>
     </div>
   )
 }
