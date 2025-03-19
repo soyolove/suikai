@@ -75,8 +75,10 @@ export function MarketPerception() {
               Market Perception
             </CardTitle>
           </div>
+
           <div className="font-normal md:text-sm text-xs text-muted">
             <Badge variant="secondary" className="px-3 py-1 ">
+
               Updated every {REFRESH_INTERVAL / 1000}s
             </Badge>
           </div>
