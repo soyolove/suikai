@@ -26,8 +26,8 @@ const FeatureCards = () => {
   const { theme } = useTheme();
   
   // Define color sets for light and dark modes
-  const lightColors = ["#6ee7b7", "#93c5fd", "#d8b4fe"];
-  const darkColors = ["#13FFAA", "#1E67C6", "#CE84CF"];
+  const lightColors = ["#34d399", "#93c5fd", "#d8b4fe"];
+  const darkColors = ["#10b981", "#1E67C6", "#c084fc"];
 //   lightColors
   // Select colors based on current theme
   const colors = theme === "dark" ? darkColors : lightColors;
